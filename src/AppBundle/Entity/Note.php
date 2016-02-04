@@ -28,15 +28,89 @@ class Note
      * @ORM\ManyToOne(targetEntity="User", inversedBy="notes")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    protected $user;
+    protected $user_id;
 
     /**
      * @ORM\Column(type="boolean")
      */
     protected $is_public;
 
-    public function __construct()
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
     {
-        $this->comments = new ArrayCollection();
+        return $this->id;
+    }
+
+    /**
+     * Set content
+     *
+     * @param \longtext $content
+     * @return Note
+     */
+    public function setContent(\longtext $content)
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * Get content
+     *
+     * @return \longtext 
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * Set is_public
+     *
+     * @param boolean $isPublic
+     * @return Note
+     */
+    public function setIsPublic($isPublic)
+    {
+        $this->is_public = $isPublic;
+
+        return $this;
+    }
+
+    /**
+     * Get is_public
+     *
+     * @return boolean 
+     */
+    public function getIsPublic()
+    {
+        return $this->is_public;
+    }
+
+    /**
+     * Set user_id
+     *
+     * @param \AppBundle\Entity\User $userId
+     * @return Note
+     */
+    public function setUserId(\AppBundle\Entity\User $userId = null)
+    {
+        $this->user_id = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get user_id
+     *
+     * @return \AppBundle\Entity\User 
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
     }
 }

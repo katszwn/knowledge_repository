@@ -29,4 +29,37 @@ class User extends BaseUser
         parent::__construct();
         // your own logic
     }
+
+    /**
+     * Add notes
+     *
+     * @param \AppBundle\Entity\Note $notes
+     * @return User
+     */
+    public function addNote(\AppBundle\Entity\Note $notes)
+    {
+        $this->notes[] = $notes;
+
+        return $this;
+    }
+
+    /**
+     * Remove notes
+     *
+     * @param \AppBundle\Entity\Note $notes
+     */
+    public function removeNote(\AppBundle\Entity\Note $notes)
+    {
+        $this->notes->removeElement($notes);
+    }
+
+    /**
+     * Get notes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getNotes()
+    {
+        return $this->notes;
+    }
 }
