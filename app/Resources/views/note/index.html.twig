@@ -1,0 +1,10 @@
+{% block body %}
+  <h2> Your notes: </h2>
+  {% if notes|length > 0 %}
+    {% for note in notes %}
+      <p>
+        {{ note.content }}
+      </p>
+    {% endfor %}
+  {% endif %}
+{% endblock %}
