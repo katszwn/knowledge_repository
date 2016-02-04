@@ -6,6 +6,7 @@ use AppBundle\Entity\Note;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class NoteController extends Controller
 {
@@ -22,5 +23,13 @@ class NoteController extends Controller
             'note/index.html.twig',
             array('notes' => $notes)
         );
+    }
+
+    /**
+     * @Route("/note/{id}")
+     * @ParamConverter("note", class="AppBundle:Note")
+    */
+    public function showAction(Note $note)
+    {
     }
 }
