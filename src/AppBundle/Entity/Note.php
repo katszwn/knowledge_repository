@@ -20,7 +20,7 @@ class Note
     protected $id;
 
     /**
-     * @ORM\Column(type="longtext")
+     * @ORM\Column(type="text")
      */
     protected $content;
 
@@ -48,10 +48,10 @@ class Note
     /**
      * Set content
      *
-     * @param \longtext $content
+     * @param $content
      * @return Note
      */
-    public function setContent(\longtext $content)
+    public function setContent($content)
     {
         $this->content = $content;
 
@@ -61,7 +61,7 @@ class Note
     /**
      * Get content
      *
-     * @return \longtext 
+     * @return \text 
      */
     public function getContent()
     {
