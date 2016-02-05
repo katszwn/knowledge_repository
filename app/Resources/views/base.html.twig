@@ -3,7 +3,10 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Knowledge repository{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+          <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+          <link href="{{ asset('bundles/app/css/main.css') }}" type="text/css" rel="stylesheet" />  
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
@@ -16,4 +19,3 @@
         {% block javascripts %}{% endblock %}
     </body>
 </html>
-
