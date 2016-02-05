@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Note;
+use AppBundle\Form\NoteType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,19 +28,20 @@ class NoteController extends Controller
     }
 
     /**
-     * @Route("/note/create")
+     * @Route("/new", name="note_new")
      */
-    public function createAction()
+    public function newAction()
     {
       $note = new Note();
-      $note->setContent('My very first note');
-      $note->setIsPublic(true); 
-      $note->setUserId($this->getUser());
+      $form = $this->createForm(NoteType::class, $note);
 
-      $em = $this->getDoctrine()->getManager();
-
-      $em->persist($note);
-      $em->flush();
+      $form->handleRequest($request);
+      if ($form->isSubmitted() && $form->isValid()) {
+        $note->setUserId($this->getUser());
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($note);
+        $em->flush();
+      }
 
       return new Response('Created note id '.$note->getId());
     }
