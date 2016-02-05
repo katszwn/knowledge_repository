@@ -32,4 +32,20 @@ class NoteController extends Controller
     public function showAction(Note $note)
     {
     }
+
+    /**
+     * @Route("/note/create")
+    */
+    public function createAction()
+    {
+      $note = new Note();
+      $note->setContent('My very first note');
+
+      $em = $this->getDoctrine()->getManager();
+
+      $em->persist($note);
+      $em->flush();
+
+      return new Response('Created note id '.$note->getId());
+    }
 }
