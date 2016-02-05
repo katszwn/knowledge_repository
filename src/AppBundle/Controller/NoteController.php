@@ -33,7 +33,8 @@ class NoteController extends Controller
     {
       $note = new Note();
       $note->setContent('My very first note');
-      $note->setIsPublic(true);
+      $note->setIsPublic(true); 
+      $note->setUserId($this->getUser());
 
       $em = $this->getDoctrine()->getManager();
 
