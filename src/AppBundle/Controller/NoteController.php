@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\Response;
 
 class NoteController extends Controller
 {
@@ -26,20 +27,13 @@ class NoteController extends Controller
     }
 
     /**
-     * @Route("/note/{id}")
-     * @ParamConverter("note", class="AppBundle:Note")
-    */
-    public function showAction(Note $note)
-    {
-    }
-
-    /**
      * @Route("/note/create")
-    */
+     */
     public function createAction()
     {
       $note = new Note();
       $note->setContent('My very first note');
+      $note->setIsPublic(true);
 
       $em = $this->getDoctrine()->getManager();
 
