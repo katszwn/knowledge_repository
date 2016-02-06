@@ -1,5 +1,4 @@
 <?php
-
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Note;
@@ -28,12 +27,12 @@ class NoteController extends Controller
     }
 
     /**
-     * @Route("/new", name="note_new")
+     * @Route("/note/new", name="note_new")
      */
-    public function newAction()
+    public function newAction(Request $request)
     {
       $note = new Note();
-      $form = $this->createForm(NoteType::class, $note);
+      $form = $this->createForm(new NoteType(), $note);
 
       $form->handleRequest($request);
       if ($form->isSubmitted() && $form->isValid()) {
@@ -41,8 +40,11 @@ class NoteController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($note);
         $em->flush();
-      }
-
-      return new Response('Created note id '.$note->getId());
+	return new Response('Created note id '.$note->getId());
+      };
+      return $this->render(
+        'note/new.html.twig',
+        array('form' => $form->createView())
+      );     
     }
 }
